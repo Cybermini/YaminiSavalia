@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #39d353;
+  --cyan: #38bdf8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #070b14;
+  color: #c9d1d9;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(57, 211, 83, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 211, 83, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #39d35350; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #39d353; }
+
+/* Selection */
+::selection { background: #39d35330; color: #39d353; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #39d353 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glowing border card */
+.glow-card {
+  border: 1px solid #21262d;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.glow-card:hover {
+  border-color: #39d35350;
+  box-shadow: 0 0 20px #39d35315, 0 4px 24px #00000040;
+}
+
+/* Skill badge */
+.skill-badge {
+  background: #161b22;
+  border: 1px solid #21262d;
+  color: #8b949e;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.skill-badge:hover {
+  border-color: #39d353;
+  color: #39d353;
+  background: #39d35310;
+}
+
+/* Timeline line */
+.timeline-line {
+  width: 2px;
+  background: linear-gradient(to bottom, #39d353, #38bdf820);
+}
+
+/* Section heading underline */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #39d353, #38bdf8);
+  margin-top: 8px;
+  border-radius: 1px;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #39d353;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+/* Nav link underline */
+.nav-link {
+  position: relative;
+  color: #8b949e;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #39d353;
+  transition: width 0.2s;
+}
+.nav-link:hover { color: #39d353; }
+.nav-link:hover::after { width: 100%; }
+
+/* Cert badge */
+.cert-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: #39d35315;
+  color: #39d353;
+  border: 1px solid #39d35340;
+  letter-spacing: 0.05em;
+}
+
+/* Available badge */
+@keyframes ping-slow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+.ping-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #39d353;
+  animation: ping-slow 1.5s ease-in-out infinite;
+}
