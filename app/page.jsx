@@ -134,6 +134,28 @@ const DATA = {
     { badge: 'THM', name: 'TryHackMe Paths', issuer: 'App Security · Phishing · IR · PenTesting', color: '#39d353' },
     { badge: 'TAU', name: 'Cybersecurity Internship', issuer: 'Tel Aviv University (2019) — Cryptography & Network Security', color: '#38bdf8' },
   ],
+  projects: [
+    {
+      id: 'detection-engineering-lab',
+      title: 'Detection Engineering Lab',
+      subtitle: '5 MITRE ATT&CK Techniques · Sigma Rules · Splunk SPL',
+      description: 'End-to-end detection engineering project simulating a ransomware kill chain across 5 MITRE ATT&CK techniques. Each technique is executed in an isolated lab, logged with real Windows Event IDs and Sysmon, written as a Sigma YAML rule, and deployed as tuned Splunk SPL — with full false positive analysis and lab observations documented.',
+      tags: ['Splunk', 'Sigma', 'MITRE ATT&CK', 'Sysmon', 'Detection Engineering', 'Windows Events', 'Threat Hunting'],
+      stats: ['5 MITRE Techniques', '5 Sigma Rules', 'Full Kill Chain'],
+      stack: 'Splunk · Sigma · Sysmon',
+      github: 'https://github.com/Cybermini/Splunk-Security-Monitoring',
+    },
+    {
+      id: 'threat-hunting-foothold',
+      title: 'SOC Investigation: Full Kill Chain Threat Hunt',
+      subtitle: 'Multi-Stage Attack · Elastic SIEM · 4 Hosts',
+      description: 'Multi-stage attack investigation across a corporate environment — SSH brute force, PHP web shell, process injection, defense evasion, persistence, and three simultaneous C2 channels (DNS tunnel + Discord + CDN). Detected and correlated entirely through raw KQL queries with no pre-generated alerts.',
+      tags: ['Elastic SIEM', 'KQL', 'Threat Hunting', 'Sysmon', 'Process Injection', 'C2', 'Incident Response'],
+      stats: ['14 Detections', '30 Screenshots', '4 Hosts'],
+      stack: 'Elastic SIEM · KQL · Sysmon',
+      github: 'https://github.com/Cybermini/threat-hunting-foothold',
+    },
+  ],
 }
 
 // ─── Typewriter ───────────────────────────────────────────────────────────────
@@ -192,7 +214,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', h)
   }, [])
 
-  const links = ['About', 'Skills', 'Experience', 'Education', 'Certifications', 'Contact']
+  const links = ['About', 'Skills', 'Experience', 'Education', 'Certifications', 'Projects', 'Contact']
 
   return (
     <nav
@@ -530,6 +552,58 @@ function Certifications() {
   )
 }
 
+// ─── Projects ────────────────────────────────────────────────────────────────
+function Projects() {
+  return (
+    <section id="projects" className="py-24 grid-bg">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="text-3xl font-bold mb-3 section-title">Projects</h2>
+        <p className="text-muted text-sm font-mono mb-10">// technical writeups & research</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {DATA.projects.map(project => (
+            <div key={project.id} className="glow-card bg-card rounded-xl p-6 flex flex-col">
+              <div className="flex items-start gap-3 mb-3">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-accent/15 text-accent border border-accent/30">
+                      ★ Featured
+                    </span>
+                    <span className="text-xs font-mono text-muted">Technical Blog</span>
+                  </div>
+                  <h3 className="font-semibold text-primary leading-snug text-lg">{project.title}</h3>
+                  <p className="text-xs font-mono text-accent mt-1">{project.subtitle}</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted leading-relaxed mb-4">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.tags.map(tag => (
+                  <span key={tag} className="skill-badge">{tag}</span>
+                ))}
+              </div>
+              <div className="flex items-center gap-6 mb-5 px-1">
+                {project.stats.map(stat => (
+                  <span key={stat} className="text-xs font-mono text-cyan">{stat}</span>
+                ))}
+              </div>
+              <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
+                <span className="text-xs font-mono text-muted">{project.stack}</span>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono px-4 py-2 rounded border border-cyan/40 text-cyan hover:bg-cyan/10 transition-all"
+                >
+                  View on GitHub ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Contact ─────────────────────────────────────────────────────────────────
 function Contact() {
   return (
@@ -613,6 +687,7 @@ export default function Page() {
         <Experience />
         <Education />
         <Certifications />
+        <Projects />
         <Contact />
       </main>
       <Footer />
