@@ -214,7 +214,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', h)
   }, [])
 
-  const links = ['About', 'Skills', 'Experience', 'Education', 'Certifications', 'Projects', 'Contact']
+  const links = ['About', 'Skills', 'Projects', 'Experience', 'Education', 'Certifications', 'Contact']
 
   return (
     <nav
@@ -684,10 +684,10 @@ export default function Page() {
         <Hero />
         <About />
         <Skills />
+        <Projects />
         <Experience />
         <Education />
         <Certifications />
-        <Projects />
         <Contact />
       </main>
       <Footer />
